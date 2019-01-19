@@ -77,7 +77,7 @@ html {
 
 .menubar {
     position: fixed;  /*Menubar doesn't move as you scroll down the screen, but it rather stays in the same place*/
-    
+    z-index:1;
     top: 0px;
     left: 0px;
     height: 30px;
@@ -159,6 +159,7 @@ a {
     height: 450px;
     width: 450px;
     transition: .8s;
+    z-index:0;
 }
 
 /*When you hover over the sliding images, they expand without changing their size to make a zooming effect*/
