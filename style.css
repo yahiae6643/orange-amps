@@ -1,115 +1,217 @@
 body,
 html {
     margin: 0px;
+    /*The body and html no longer has spacing between the sides of the screen and themselves, which means the elements will make contact with the walls of the screen*/
     scroll-behavior: smooth;
-}
-
-
-/*First Section*/
-
-.beginning {
-    background-image: url("media/background.jpg");
-    background-repeat: no-repeat;
-    background-origin: content-box;
-    background-position: center center;
-
-    padding: 0px;
-    height: 900px;
-    background-color: orange;
-    z-index: 1;
-}
-
-
-
-#title {
-    width: 400px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-}
-
-@keyframes flash {
-    
-}
-
-
-.menubar {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    height: 30px;
-    width: 100%;
-    background-image: linear-gradient(#EE7F2D, #FF9F00);
-    box-shadow: 2px 2px 8px #FF7538;
-    z-index: 2;
-
-
-
+    /*Makes scroll transition slow and smooth instead of choppy (move from one div to the next without the scrollbar actually scrolling)*/
 }
 
 
 @font-face {
     font-family: groovy;
     src: url("KeeponTruckin.ttf");
+
+
+}
+
+/*First Section*/
+
+.beginning {
+    background-image: url("media/background.jpg");
+    background-repeat: no-repeat; 
+    background-origin: content-box;
+    background-position: center center;
+    background-attachment: fixed;
+
+    padding: 0px;
+    height: 900px;
+
+}
+
+
+.beginning h2 {
+    font-family: 'Special Elite', cursive;
+    color: white;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    overflow: hidden;
+    transform: translate(-50%);
+    white-space: nowrap; /*Sets content on one line*/
+    animation: appear 10s linear;
+
+
+}
+
+.beginning span {
+    color: orange;
+
+
+}
+
+/*Makes the text invisible at the beginning but it slowly appears as the width of the element increases*/
+
+@keyframes appear {
+    from {
+        width: 0px;
+    }
+    to {
+        width: 500px;
+    }
+}
+
+#title {
+    width: 400px;
+    position: absolute;
+    /*Positions title in the center of the display section*/
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+
+/*Sets menubar at the top of the screen horizontally*/
+
+.menubar {
+    position: fixed;  /*Menubar doesn't move as you scroll down the screen, but it rather stays in the same place*/
+    
+    top: 0px;
+    left: 0px;
+    height: 30px;
+    width: 100%;
+    background-image: linear-gradient(#EE7F2D, #FF9F00);
+    box-shadow: 2px 2px 8px #FF7538;
+    
 }
 
 ul {
     list-style-type: none;
+    /*Stops content from being formatted as bulletpoints*/
     margin: 0px 0px 0px 20px;
     padding: 0px;
 
 }
 
-li {
+/*Places content horizontally on menubar*/
 
+.menubar li {
 
-    font-family: groovy;
     display: inline-block;
+
+}
+
+/*When you hover over the linked words within the menubar, they will have a 3d-like shadow*/
+
+a {
+    font-family: groovy;
     height: 30px;
     margin-right: 10px;
     line-height: 30px;
-    color: white;
-    transition: 0.3s;
-
-
-}
-
-/*Groovy effect*/
-
-.menubar li:hover {
-    text-shadow: 3px 3px 0px #2c2e38, 5px 5px 0px #5c5f72;
-}
-
-a {
     text-decoration: none;
     color: white;
+    transition: 0.3s;
 }
 
-/*Second / Clips*/
+.menubar a:hover {
+    text-shadow: 2.5px 2.5px 0px #23242c, 5.5px 5.5px 0px #494c5b;
+
+
+
+}
+
+
+/*Second Section (Ambassadors)*/
 
 .clips {
+    background-image: url("media/background2.jpg");
     text-align: center;
     width: 100%;
     height: 620px;
+
 }
 
 
-.clips span {
-    display: block;
-    width: 100%;
-    background-color: black;
-    opacity: 1;
+/*Positions all pictures in one place and hides the 2nd and 3rd image*/
+
+#slideshow {
+    border: solid 3px;
+    position: relative;
+    overflow: hidden;
+    /*Cuts out div at 450px width and height*/
+    height: 450px;
+    width: 450px;
+
+    /*Places pictures in the ambassadors section*/
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+
+
 }
 
+/*Images are a 450:450 ratio*/
 
-.clips img {
-    width: 400px;
-    height: 400px;
-    margin-top: 100px;
+#slideshow img {
+    height: 450px;
+    width: 450px;
+    transition: .8s;
 }
 
-span:hover {
-    opacity: 0.5;
+/*When you hover over the sliding images, they expand without changing their size to make a zooming effect*/
+
+#slideshow img:hover {
+    transform: scale(1.15);
+}
+
+/*All images will be next to each other so they make an easy transition from one image to another*/
+
+.slide {
+    float: left;
+    text-align: center;
+}
+
+/*This gives the images enough space to move successfully*/
+
+.slider {
+    width: 1350px;
+    animation: move 12s infinite;
+}
+
+/*Every 2.4 seconds, one transition is made*/
+
+@keyframes move {
+    0% {
+        margin-left: 0px;
+    }
+    20% {
+        margin-left: 0px;
+    }
+    40% {
+        margin-left: -450px;
+    }
+    60% {
+        margin-left: -450px;
+    }
+    80% {
+        margin-left: -900px;
+    }
+    90% {
+        margin-left: -900px;
+    }
+
+}
+
+/*Add names of ambassadors onto the slideshow*/
+.artists ul {
+    display:inline-block;
+    position:relative;
+    font-family: 'Special Elite', cursive;
+    color: white;
+    padding:5px;
+    background-color: rgba(51,51,51,.8)
+    
 }
